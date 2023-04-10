@@ -1,10 +1,8 @@
 package com.example.startedspringbootaplication.api.TeacherApi;
 
 import com.example.startedspringbootaplication.dto.request.TeacherRequest;
-import com.example.startedspringbootaplication.dto.response.StudentResponse;
 import com.example.startedspringbootaplication.dto.response.TeacherResponse;
 import com.example.startedspringbootaplication.service.ServiceVersionTeacher;
-import com.example.startedspringbootaplication.service.auth.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +14,8 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/teacher")
 @RequiredArgsConstructor
-public class V5 {
+public class TeacherApi {
     private final ServiceVersionTeacher company;
-    private final AuthService authService;
 
 
     @PostMapping("/save/teacher")
@@ -38,7 +35,7 @@ public class V5 {
 
     @GetMapping("find/all")
     @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
-    @Operation(summary = "find all teacher ", description = " teacher can only find all id to the admin and teacher")
+    @Operation(summary = "find all teacher ", description = " teacher can be taken by ID for teacher and admin")
     public List<TeacherResponse> findAll() {
         return company.findAll();
     }

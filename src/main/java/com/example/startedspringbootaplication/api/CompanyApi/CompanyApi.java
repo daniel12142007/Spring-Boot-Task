@@ -2,7 +2,6 @@ package com.example.startedspringbootaplication.api.CompanyApi;
 
 import com.example.startedspringbootaplication.dto.request.CompanyRequest;
 import com.example.startedspringbootaplication.service.ServiceVersionCompany;
-import com.example.startedspringbootaplication.service.auth.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1/company")
 @RequiredArgsConstructor
-public class V1 {
+public class CompanyApi {
     private final ServiceVersionCompany company;
 
     @PostMapping("/save/company")
