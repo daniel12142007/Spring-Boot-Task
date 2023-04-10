@@ -24,11 +24,11 @@ public class V3 {
     private final AuthService authService;
 
 
-    @PostMapping("/save/group")
+    @PostMapping("/save/group/{courseId}/{companyId}")
     @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
     @Operation(summary = "save group ", description = " group can only be saved to the admin and teacher")
-    public ResponseEntity<String> save(@RequestBody GroupsRequest request) {
-        company.saveGroup(request);
+    public ResponseEntity<String> save(@RequestBody GroupsRequest request, @PathVariable Long courseId, @PathVariable Long companyId) {
+        company.saveGroup(request, courseId, companyId);
         return ResponseEntity.ok().body("user with name:" + request.getEmail() + " successfully save");
     }
 
