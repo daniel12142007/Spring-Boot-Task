@@ -23,11 +23,6 @@ public class V1 {
     private final ServiceVersionCompany company;
     private final AuthService authService;
 
-    @PostMapping("/login")
-    @PermitAll
-    public AuthResponse authenticated(@RequestBody AuthRequest requestBody) {
-        return authService.authenticate(requestBody);
-    }
 
     @PostMapping("/save/company")
     @PreAuthorize("hasAnyAuthority('ADMIN')")

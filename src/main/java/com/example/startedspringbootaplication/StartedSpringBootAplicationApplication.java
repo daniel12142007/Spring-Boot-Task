@@ -2,7 +2,8 @@ package com.example.startedspringbootaplication;
 
 import com.example.startedspringbootaplication.model.*;
 import com.example.startedspringbootaplication.model.role.Role;
-import com.example.startedspringbootaplication.model.users.Users;
+import com.example.startedspringbootaplication.model.Users;
+import com.example.startedspringbootaplication.model.role.StudentFormat;
 import com.example.startedspringbootaplication.repository.CompanyRepository;
 import com.example.startedspringbootaplication.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -43,7 +44,7 @@ public class StartedSpringBootAplicationApplication {
         group.setCompany(company);
         group.setCourses(List.of(course));
         Users user2 = new Users("student", encoder.encode("student"), Role.STUDENT);
-        Student student = new Student(user2.getEmail(), encoder.encode(user2.getPassword()), user2.getRole());
+        Student student = new Student(user2.getEmail(), encoder.encode(user2.getPassword()), user2.getRole(), StudentFormat.OFFLINE);
         student.setGroup(group);
         group.setStudents(List.of(student));
         company.setGroups(List.of(group));

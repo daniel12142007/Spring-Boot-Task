@@ -1,5 +1,6 @@
 package com.example.startedspringbootaplication.dto.request;
 
+import com.example.startedspringbootaplication.model.role.StudentFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,4 +9,5 @@ import lombok.Setter;
 public class StudentRequest {
     private String email;
     private String password;
+    private StudentFormat studentFormat;
 }

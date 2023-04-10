@@ -1,4 +1,4 @@
-package com.example.startedspringbootaplication.model.users;
+package com.example.startedspringbootaplication.model;
 
 import com.example.startedspringbootaplication.model.role.Role;
 import lombok.Getter;

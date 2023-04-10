@@ -7,4 +7,5 @@ import lombok.Setter;
 @Getter
 public class CourseRequest {
     private String email;
+    private String password;
 }

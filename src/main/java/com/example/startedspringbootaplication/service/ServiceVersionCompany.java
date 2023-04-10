@@ -2,8 +2,8 @@ package com.example.startedspringbootaplication.service;
 
 import com.example.startedspringbootaplication.dto.request.CompanyRequest;
 import com.example.startedspringbootaplication.model.Company;
+import com.example.startedspringbootaplication.model.Users;
 import com.example.startedspringbootaplication.model.role.Role;
-import com.example.startedspringbootaplication.model.users.Users;
 import com.example.startedspringbootaplication.repository.CompanyRepository;
 import com.example.startedspringbootaplication.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

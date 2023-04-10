@@ -4,6 +4,8 @@ import com.example.startedspringbootaplication.dto.auth.AuthRequest;
 import com.example.startedspringbootaplication.dto.auth.AuthResponse;
 import com.example.startedspringbootaplication.dto.request.CompanyRequest;
 import com.example.startedspringbootaplication.dto.request.TeacherRequest;
+import com.example.startedspringbootaplication.dto.response.StudentResponse;
+import com.example.startedspringbootaplication.dto.response.TeacherResponse;
 import com.example.startedspringbootaplication.service.ServiceVersionCompany;
 import com.example.startedspringbootaplication.service.ServiceVersionTeacher;
 import com.example.startedspringbootaplication.service.auth.AuthService;
@@ -22,11 +24,11 @@ public class V5 {
     private final ServiceVersionTeacher company;
     private final AuthService authService;
 
-    @PostMapping("/login")
-    @PermitAll
-    public AuthResponse authenticated(@RequestBody AuthRequest requestBody) {
-        return authService.authenticate(requestBody);
-    }
+//    @PostMapping("/login")
+//    @PermitAll
+//    public AuthResponse authenticated(@RequestBody AuthRequest requestBody) {
+//        return authService.authenticate(requestBody);
+//    }
 
     @PostMapping("/save/teacher")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
@@ -34,5 +36,12 @@ public class V5 {
     public ResponseEntity<String> save(@RequestBody TeacherRequest request) {
         company.saveTeacher(request);
         return ResponseEntity.ok().body("user with name:" + request.getEmail() + " successfully save");
+    }
+
+    @GetMapping("get/teacher/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
+    @Operation(summary = "get by id teacher ", description = " teacher can only be get by id to the admin and teacher")
+    public TeacherResponse getbyid(@PathVariable Long id) {
+        return company.getbyid(id);
     }
 }
