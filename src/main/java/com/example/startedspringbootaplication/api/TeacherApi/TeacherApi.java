@@ -15,14 +15,14 @@ import java.util.List;
 @RequestMapping("api/v1/teacher")
 @RequiredArgsConstructor
 public class TeacherApi {
-    private final ServiceVersionTeacher company;
+    private final ServiceVersionTeacher serviceVersionTeacher;
 
 
     @PostMapping("/save/teacher")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "save teacher ", description = " teacher can only be saved to the admin")
     public ResponseEntity<String> save(@RequestBody TeacherRequest request) {
-        company.saveTeacher(request);
+        serviceVersionTeacher.saveTeacher(request);
         return ResponseEntity.ok().body("user with name:" + request.getEmail() + " successfully save");
     }
 
@@ -30,21 +30,21 @@ public class TeacherApi {
     @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
     @Operation(summary = "get by id teacher ", description = " teacher can only be get by id to the admin and teacher")
     public TeacherResponse getbyid(@PathVariable Long id) {
-        return company.getbyid(id);
+        return serviceVersionTeacher.getbyid(id);
     }
 
     @GetMapping("find/all")
     @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
     @Operation(summary = "find all teacher ", description = " teacher can be taken by ID for teacher and admin")
     public List<TeacherResponse> findAll() {
-        return company.findAll();
+        return serviceVersionTeacher.findAll();
     }
 
     @PostMapping("/delete/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "save teacher ", description = " teacher can only be delete to the admin")
     public ResponseEntity<String> save(@PathVariable Long id) {
-        company.delete(id);
+        serviceVersionTeacher.delete(id);
         return ResponseEntity.ok().body("delete");
     }
 }

@@ -1,11 +1,9 @@
 package com.example.startedspringbootaplication.service;
 
 import com.example.startedspringbootaplication.dto.request.TeacherRequest;
-import com.example.startedspringbootaplication.dto.response.StudentResponse;
 import com.example.startedspringbootaplication.dto.response.TeacherResponse;
-import com.example.startedspringbootaplication.model.Student;
 import com.example.startedspringbootaplication.model.Teacher;
-import com.example.startedspringbootaplication.model.role.Role;
+import com.example.startedspringbootaplication.model.enums.Role;
 import com.example.startedspringbootaplication.model.Users;
 import com.example.startedspringbootaplication.repository.TeacherRepository;
 import com.example.startedspringbootaplication.repository.UserRepository;

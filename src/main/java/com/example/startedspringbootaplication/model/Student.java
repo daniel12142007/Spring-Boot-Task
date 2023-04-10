@@ -1,7 +1,7 @@
 package com.example.startedspringbootaplication.model;
 
-import com.example.startedspringbootaplication.model.role.Role;
-import com.example.startedspringbootaplication.model.role.StudentFormat;
+import com.example.startedspringbootaplication.model.enums.Role;
+import com.example.startedspringbootaplication.model.enums.StudentFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

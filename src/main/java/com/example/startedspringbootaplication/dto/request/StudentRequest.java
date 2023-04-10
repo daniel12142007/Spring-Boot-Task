@@ -1,6 +1,6 @@
 package com.example.startedspringbootaplication.dto.request;
 
-import com.example.startedspringbootaplication.model.role.StudentFormat;
+import com.example.startedspringbootaplication.model.enums.StudentFormat;
 import lombok.Getter;
 import lombok.Setter;
 
