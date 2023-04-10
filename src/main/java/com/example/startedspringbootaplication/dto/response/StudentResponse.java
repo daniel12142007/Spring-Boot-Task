@@ -6,4 +6,5 @@ import lombok.Data;
 public class StudentResponse {
     private String email;
     private String groupsId;
+    private String format;
 }

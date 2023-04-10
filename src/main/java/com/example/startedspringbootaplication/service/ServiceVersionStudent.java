@@ -13,6 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ServiceVersionStudent {
@@ -42,6 +45,22 @@ public class ServiceVersionStudent {
         StudentResponse response = new StudentResponse();
         response.setEmail(groupResponse.getEmail());
         response.setGroupsId(String.valueOf(groupResponse.getId()));
+        response.setFormat(String.valueOf(groupResponse.getStudentFormat()));
         return response;
+    }
+
+    public List<StudentResponse> findAll() {
+        List<Student> list = companyRepository.findAll();
+        List<StudentResponse> getList = new ArrayList<>();
+        for (Student sudent : list) {
+            getList.add(getbyid(sudent.getId()));
+        }
+        return getList;
+    }
+
+    public ResponseEntity<String> delete(Long id) {
+        companyRepository.deleteById(id);
+        userRepository.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }

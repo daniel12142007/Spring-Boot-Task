@@ -3,6 +3,7 @@ package com.example.startedspringbootaplication.api.GroupsApi;
 import com.example.startedspringbootaplication.dto.auth.AuthRequest;
 import com.example.startedspringbootaplication.dto.auth.AuthResponse;
 import com.example.startedspringbootaplication.dto.request.GroupsRequest;
+import com.example.startedspringbootaplication.dto.response.CourserResponse;
 import com.example.startedspringbootaplication.dto.response.GroupResponse;
 import com.example.startedspringbootaplication.service.ServiceVersionGroup;
 import com.example.startedspringbootaplication.service.auth.AuthService;
@@ -13,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/group")
@@ -21,11 +23,6 @@ public class V3 {
     private final ServiceVersionGroup company;
     private final AuthService authService;
 
-//    @PostMapping("/login")
-//    @PermitAll
-//    public AuthResponse authenticated(@RequestBody AuthRequest requestBody) {
-//        return authService.authenticate(requestBody);
-//    }
 
     @PostMapping("/save/group")
     @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
@@ -41,5 +38,20 @@ public class V3 {
     @Operation(summary = "get by id group ", description = " group can only be get by id to the admin and teacher")
     public GroupResponse getbyid(@PathVariable Long id) {
         return company.getbyid(id);
+    }
+
+    @GetMapping("find/all")
+    @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
+    @Operation(summary = "find all teacher ", description = " group can only find all id to the admin and teacher ")
+    public List<GroupResponse> findAll() {
+        return company.findAll();
+    }
+
+    @PostMapping("/delete/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
+    @Operation(summary = "save teacher ", description = " group can only be delete to the admin and teacher")
+    public ResponseEntity<String> save(@PathVariable Long id) {
+        company.delete(id);
+        return ResponseEntity.ok().body("delete");
     }
 }
