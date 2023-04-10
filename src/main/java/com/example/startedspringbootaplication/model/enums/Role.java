@@ -1,8 +1,6 @@
-package com.example.startedspringbootaplication.model.role;
+package com.example.startedspringbootaplication.model.enums;
 
 import org.springframework.security.core.GrantedAuthority;
-
-import java.util.Collection;
 
 public enum Role implements GrantedAuthority {
     ADMIN,

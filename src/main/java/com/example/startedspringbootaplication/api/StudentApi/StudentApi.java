@@ -15,13 +15,13 @@ import java.util.List;
 @RequestMapping("api/v1/student")
 @RequiredArgsConstructor
 public class StudentApi {
-    private final ServiceVersionStudent company;
+    private final ServiceVersionStudent studentService;
 
     @PostMapping("/save/student/{Groupid}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "save student ", description = " student can only be saved to the admin")
     public ResponseEntity<String> save(@PathVariable Long Groupid, @RequestBody StudentRequest request) {
-        company.saveStudent(request, Groupid);
+        studentService.saveStudent(request, Groupid);
         return ResponseEntity.ok().body("user with name:" + request.getEmail() + " successfully save");
     }
 
@@ -29,21 +29,21 @@ public class StudentApi {
     @PreAuthorize("hasAnyAuthority('ADMIN','STUDENT')")
     @Operation(summary = "get by id student ", description = " student can only be get by id to the admin and teacher")
     public StudentResponse getbyid(@PathVariable Long id) {
-        return company.getbyid(id);
+        return studentService.getbyid(id);
     }
 
     @GetMapping("find/all")
     @PreAuthorize("hasAnyAuthority('ADMIN','STUDENT')")
     @Operation(summary = "find all student ", description = " student can be taken by ID for student and admin")
     public List<StudentResponse> findAll() {
-        return company.findAll();
+        return studentService.findAll();
     }
 
     @PostMapping("/delete/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "save student ", description = " student can only be delete to the admin")
     public ResponseEntity<String> save(@PathVariable Long id) {
-        company.delete(id);
+        studentService.delete(id);
         return ResponseEntity.ok().body("delete");
     }
 }

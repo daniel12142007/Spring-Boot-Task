@@ -16,13 +16,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CourseApi {
 
-    private final ServiceVersionCourse company;
+    private final ServiceVersionCourse serviceVersionCourse;
 
     @PostMapping("/save/course")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "save course ", description = " course can only be saved to the admin")
     public ResponseEntity<String> save(@RequestBody CourseRequest request) {
-        company.saveCourse(request);
+        serviceVersionCourse.saveCourse(request);
         return ResponseEntity.ok().body("user with name:" + request.getEmail() + " successfully save");
     }
 
@@ -30,21 +30,21 @@ public class CourseApi {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "get by id course ", description = " course can be taken by ID for admin ")
     public CourserResponse getbyid(@PathVariable Long id) {
-        return company.getbyid(id);
+        return serviceVersionCourse.getbyid(id);
     }
 
     @GetMapping("find/all")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "find all teacher ", description = " course can only find all id to the admin ")
     public List<CourserResponse> findAll() {
-        return company.findAll();
+        return serviceVersionCourse.findAll();
     }
 
     @PostMapping("/delete/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "save teacher ", description = " course can only be delete to the admin")
     public ResponseEntity<String> save(@PathVariable Long id) {
-        company.delete(id);
+        serviceVersionCourse.delete(id);
         return ResponseEntity.ok().body("delete");
     }
 }

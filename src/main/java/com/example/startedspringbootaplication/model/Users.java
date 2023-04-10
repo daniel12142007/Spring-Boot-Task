@@ -1,6 +1,6 @@
 package com.example.startedspringbootaplication.model;
 
-import com.example.startedspringbootaplication.model.role.Role;
+import com.example.startedspringbootaplication.model.enums.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
