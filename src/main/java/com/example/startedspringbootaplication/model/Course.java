@@ -1,22 +1,24 @@
 package com.example.startedspringbootaplication.model;
 
+import com.example.startedspringbootaplication.model.role.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class Course {
+public class Course{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "courName")
-    private String courName;
-    @Column(name = "duration")
-    private String duration;
+    private Long id;
+    private String email;
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
@@ -27,17 +29,8 @@ public class Course {
             cascade = CascadeType.ALL)
     private List<Groups> groups;
 
-    public Course(String courName, String duration) {
-        this.courName = courName;
-        this.duration = duration;
-    }
-
-    @Override
-    public String toString() {
-        return "Course{" +
-               "id=" + id +
-               ", courName='" + courName + '\'' +
-               ", duration=" + duration +
-               '}';
+    public Course(String email) {
+        this.email = email;
+//        this.password = password;
     }
 }
