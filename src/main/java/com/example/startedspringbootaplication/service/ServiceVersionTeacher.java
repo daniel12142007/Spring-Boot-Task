@@ -27,7 +27,7 @@ public class ServiceVersionTeacher {
         user.setEmail(request.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
         user.setRole(Role.TEACHER);
-        Teacher company = new Teacher(user.getEmail(), bCryptPasswordEncoder.encode(user.getPassword()), user.getRole());
+        Teacher company = new Teacher(user.getEmail(),user.getPassword(), user.getRole());
         companyRepository.save(company);
         userRepository.save(user);
         return ResponseEntity.ok().build();

@@ -30,11 +30,11 @@ public class StartedSpringBootAplicationApplication {
     @PostConstruct
     public void init() {
         Users user = new Users("company", encoder.encode("company"), Role.ADMIN);
-        Company company = new Company(user.getEmail(), encoder.encode(user.getPassword()), user.getRole());
+        Company company = new Company(user.getEmail(), user.getPassword(), user.getRole());
         Course course = new Course("course");
         course.setCompany(company);
         Users user1 = new Users("teacher", encoder.encode("teacher"), Role.TEACHER);
-        Teacher teacher = new Teacher(user1.getEmail(), encoder.encode(user1.getPassword()), user1.getRole());
+        Teacher teacher = new Teacher(user1.getEmail(), user1.getPassword(), user1.getRole());
         teacher.setCourse(course);
         course.setTeacher(teacher);
         company.setCourses(List.of(course));
@@ -44,7 +44,7 @@ public class StartedSpringBootAplicationApplication {
         group.setCompany(company);
         group.setCourses(List.of(course));
         Users user2 = new Users("student", encoder.encode("student"), Role.STUDENT);
-        Student student = new Student(user2.getEmail(), encoder.encode(user2.getPassword()), user2.getRole(), StudentFormat.OFFLINE);
+        Student student = new Student(user2.getEmail(), user2.getPassword(), user2.getRole(), StudentFormat.OFFLINE);
         student.setGroup(group);
         group.setStudents(List.of(student));
         company.setGroups(List.of(group));
