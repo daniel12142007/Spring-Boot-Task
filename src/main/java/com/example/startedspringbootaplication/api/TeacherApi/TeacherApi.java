@@ -18,11 +18,11 @@ public class TeacherApi {
     private final ServiceVersionTeacher serviceVersionTeacher;
 
 
-    @PostMapping("/save/teacher")
+    @PostMapping("/save/teacher/{courseId}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "save teacher ", description = " teacher can only be saved to the admin")
-    public ResponseEntity<String> save(@RequestBody TeacherRequest request) {
-        serviceVersionTeacher.saveTeacher(request);
+    public ResponseEntity<String> save(@RequestBody TeacherRequest request, @PathVariable Long courseId) {
+        serviceVersionTeacher.saveTeacher(request, courseId);
         return ResponseEntity.ok().body("user with name:" + request.getEmail() + " successfully save");
     }
 
@@ -30,7 +30,7 @@ public class TeacherApi {
     @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
     @Operation(summary = "get by id teacher ", description = " teacher can only be get by id to the admin and teacher")
     public TeacherResponse getbyid(@PathVariable Long id) {
-        return serviceVersionTeacher.getbyid(id);
+        return serviceVersionTeacher.getById(id);
     }
 
     @GetMapping("find/all")

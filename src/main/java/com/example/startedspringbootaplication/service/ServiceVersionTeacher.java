@@ -5,6 +5,7 @@ import com.example.startedspringbootaplication.dto.response.TeacherResponse;
 import com.example.startedspringbootaplication.model.Teacher;
 import com.example.startedspringbootaplication.model.enums.Role;
 import com.example.startedspringbootaplication.model.Users;
+import com.example.startedspringbootaplication.repository.CourserRepository;
 import com.example.startedspringbootaplication.repository.TeacherRepository;
 import com.example.startedspringbootaplication.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +22,9 @@ public class ServiceVersionTeacher {
     private final TeacherRepository companyRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder bCryptPasswordEncoder;
+    private final CourserRepository courserRepository;
 
-    public ResponseEntity<String> saveTeacher(TeacherRequest request) {
+    public ResponseEntity<String> saveTeacher(TeacherRequest request, Long courseId) {
         if (companyRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("this email is already have in!");
         }
@@ -30,21 +32,22 @@ public class ServiceVersionTeacher {
         user.setEmail(request.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
         user.setRole(Role.TEACHER);
-        Teacher company = new Teacher(user.getEmail(), user.getPassword(), user.getRole());
-        companyRepository.save(company);
+        Teacher teacher = new Teacher(user.getEmail(), user.getPassword(), user.getRole());
+        teacher.setCourse(courserRepository.getById(courseId));
+        companyRepository.save(teacher);
         userRepository.save(user);
         return ResponseEntity.ok().build();
     }
 
-    public TeacherResponse getbyid(Long id) {
+    public TeacherResponse getById(Long id) {
         try {
-            Teacher groupResponse = companyRepository.findById(id).get();
-            if (groupResponse.getId() == null) {
+            Teacher teacher = companyRepository.findById(id).get();
+            if (teacher.getId() == null) {
                 return null;
             }
             TeacherResponse response = new TeacherResponse();
-            response.setEmail(groupResponse.getEmail());
-            response.setCourseId(String.valueOf(groupResponse.getId()));
+            response.setEmail(teacher.getEmail());
+            response.setCourseId(String.valueOf(teacher.getId()));
             return response;
         } catch (RuntimeException e) {
             throw new RuntimeException("-----------------------there is no such:\" + id + \" please enter an ID that exists-----------------------");
@@ -55,7 +58,7 @@ public class ServiceVersionTeacher {
         List<Teacher> list = companyRepository.findAll();
         List<TeacherResponse> getList = new ArrayList<>();
         for (Teacher sudent : list) {
-            getList.add(getbyid(sudent.getId()));
+            getList.add(getById(sudent.getId()));
         }
         return getList;
     }

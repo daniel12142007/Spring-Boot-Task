@@ -18,15 +18,15 @@ public class CourseApi {
 
     private final ServiceVersionCourse serviceVersionCourse;
 
-    @PostMapping("/save/course")
+    @PostMapping("/save/course/{companyId}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "save course ", description = " course can only be saved to the admin")
-    public ResponseEntity<String> save(@RequestBody CourseRequest request) {
-        serviceVersionCourse.saveCourse(request);
+    public ResponseEntity<String> save(@RequestBody CourseRequest request, @PathVariable Long companyId) {
+        serviceVersionCourse.saveCourse(request,companyId);
         return ResponseEntity.ok().body("user with name:" + request.getEmail() + " successfully save");
     }
 
-    @GetMapping("get/teacher/{id}")
+    @GetMapping("get/course/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "get by id course ", description = " course can be taken by ID for admin ")
     public CourserResponse getbyid(@PathVariable Long id) {
