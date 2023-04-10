@@ -2,9 +2,7 @@ package com.example.startedspringbootaplication.api.CourseApi;
 
 import com.example.startedspringbootaplication.dto.request.CourseRequest;
 import com.example.startedspringbootaplication.dto.response.CourserResponse;
-import com.example.startedspringbootaplication.dto.response.TeacherResponse;
 import com.example.startedspringbootaplication.service.ServiceVersionCourse;
-import com.example.startedspringbootaplication.service.auth.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +14,9 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/course")
 @RequiredArgsConstructor
-public class V2 {
+public class CourseApi {
+
     private final ServiceVersionCourse company;
-    private final AuthService authService;
 
     @PostMapping("/save/course")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
@@ -30,13 +28,13 @@ public class V2 {
 
     @GetMapping("get/teacher/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    @Operation(summary = "get by id course ", description = " course can only be get by id to the admin ")
+    @Operation(summary = "get by id course ", description = " course can be taken by ID for admin ")
     public CourserResponse getbyid(@PathVariable Long id) {
         return company.getbyid(id);
     }
 
     @GetMapping("find/all")
-    @PreAuthorize("hasAnyAuthority('ADMIN',)")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "find all teacher ", description = " course can only find all id to the admin ")
     public List<CourserResponse> findAll() {
         return company.findAll();
