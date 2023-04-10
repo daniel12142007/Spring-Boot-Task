@@ -22,7 +22,7 @@ public class CompanyApi {
     @Operation(summary = "save company ", description = " company can only be saved to the admin")
     public ResponseEntity<String> save(@RequestBody CompanyRequest request) {
         company.saveCompany(request);
-        return ResponseEntity.ok().body("user with name:" + request.getEmail() + " successfully save");
+        return ResponseEntity.ok().body("user with name:" + request.getCompanyName() + " successfully save");
     }
 
     @GetMapping("/find/All/company")
