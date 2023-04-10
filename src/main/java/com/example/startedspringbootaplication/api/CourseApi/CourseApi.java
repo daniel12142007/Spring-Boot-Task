@@ -30,7 +30,7 @@ public class CourseApi {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "get by id course ", description = " course can be taken by ID for admin ")
     public CourserResponse getbyid(@PathVariable Long id) {
-        return serviceVersionCourse.getbyid(id);
+        return serviceVersionCourse.getById(id);
     }
 
     @GetMapping("find/all")

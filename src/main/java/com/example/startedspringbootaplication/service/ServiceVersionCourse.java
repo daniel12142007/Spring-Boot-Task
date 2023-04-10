@@ -26,7 +26,7 @@ public class ServiceVersionCourse {
         return ResponseEntity.ok().build();
     }
 
-    public CourserResponse getbyid(Long id) {
+    public CourserResponse getById(Long id) {
         try {
             Course groupResponse = courserRepository.findById(id).get();
             if (groupResponse.getId() == null) {
@@ -44,14 +44,18 @@ public class ServiceVersionCourse {
     public List<CourserResponse> findAll() {
         List<Course> list = courserRepository.findAll();
         List<CourserResponse> getList = new ArrayList<>();
-        for (Course sudent : list) {
-            getList.add(getbyid(sudent.getId()));
+        for (Course course : list) {
+            getList.add(getById(course.getId()));
         }
         return getList;
     }
 
     public ResponseEntity<String> delete(Long id) {
-        companyRepository.deleteById(id);
-        return ResponseEntity.ok().build();
+        try {
+            companyRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            throw new RuntimeException("-----------------------------------------------------not fount id-----------------------------------------------------");
+        }
     }
 }

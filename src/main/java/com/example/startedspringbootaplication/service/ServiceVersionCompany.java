@@ -30,14 +30,14 @@ public class ServiceVersionCompany {
         user.setEmail(request.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
         user.setRole(Role.ADMIN);
-        Company company = new Company(user.getEmail(),user.getPassword(), user.getRole());
+        Company company = new Company(user.getEmail(), user.getPassword(), user.getRole());
         companyRepository.save(company);
         userRepository.save(user);
         return ResponseEntity.ok().build();
     }
 
 
-    public CompanyResponse getbyid(Long id) {
+    public CompanyResponse getById(Long id) {
         try {
             Company company = companyRepository.findById(id).get();
             if (company.getId() == null) {
@@ -54,11 +54,9 @@ public class ServiceVersionCompany {
     public List<CompanyResponse> findAll() {
         List<Company> list = companyRepository.findAll();
         List<CompanyResponse> getList = new ArrayList<>();
-        for (Company sudent : list) {
-            getList.add(getbyid(sudent.getId()));
+        for (Company company : list) {
+            getList.add(getById(company.getId()));
         }
         return getList;
     }
-
-
 }

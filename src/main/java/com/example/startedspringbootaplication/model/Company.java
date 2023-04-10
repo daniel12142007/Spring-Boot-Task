@@ -10,10 +10,11 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Data
-public class Company{
+public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nameCompany;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
@@ -23,7 +24,8 @@ public class Company{
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Groups> groups;
 
-    public Company(String email, String password, Role role) {
+    public Company(String nameCompany, String email, String password, Role role) {
+        this.nameCompany = nameCompany;
         this.email = email;
         this.password = password;
         this.role = role;

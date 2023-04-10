@@ -31,7 +31,7 @@ public class GroupApi {
     @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
     @Operation(summary = "get by id group ", description = " group can be taken by ID for teacher and admin")
     public GroupResponse getbyid(@PathVariable Long id) {
-        return serviceVersionGroup.getbyid(id);
+        return serviceVersionGroup.getById(id);
     }
 
     @GetMapping("find/all")
