@@ -30,15 +30,18 @@ public class ServiceVersionGroup {
     }
 
     public GroupResponse getbyid(Long id) {
-        Groups groupResponse;
-        groupResponse = companyRepository.findById(id).get();
-        if (groupResponse.getId() == null) {
-            return null;
+        try {
+            Groups groupResponse = companyRepository.findById(id).get();
+            if (groupResponse.getId() == null) {
+                return null;
+            }
+            GroupResponse response = new GroupResponse();
+            response.setEmail(groupResponse.getEmail());
+            response.setCompanyId(String.valueOf(groupResponse.getId()));
+            return response;
+        } catch (RuntimeException e) {
+            throw new RuntimeException("-----------------------there is no such:\" + id + \" please enter an ID that exists-----------------------");
         }
-        GroupResponse response = new GroupResponse();
-        response.setEmail(groupResponse.getEmail());
-        response.setCompanyId(String.valueOf(groupResponse.getId()));
-        return response;
     }
 
     public List<GroupResponse> findAll() {

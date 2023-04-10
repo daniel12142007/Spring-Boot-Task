@@ -37,14 +37,18 @@ public class ServiceVersionTeacher {
     }
 
     public TeacherResponse getbyid(Long id) {
-        Teacher groupResponse = companyRepository.findById(id).get();
-        if (groupResponse.getId() == null) {
-            return null;
+        try {
+            Teacher groupResponse = companyRepository.findById(id).get();
+            if (groupResponse.getId() == null) {
+                return null;
+            }
+            TeacherResponse response = new TeacherResponse();
+            response.setEmail(groupResponse.getEmail());
+            response.setCourseId(String.valueOf(groupResponse.getId()));
+            return response;
+        } catch (RuntimeException e) {
+            throw new RuntimeException("-----------------------there is no such:\" + id + \" please enter an ID that exists-----------------------");
         }
-        TeacherResponse response = new TeacherResponse();
-        response.setEmail(groupResponse.getEmail());
-        response.setCourseId(String.valueOf(groupResponse.getId()));
-        return response;
     }
 
     public List<TeacherResponse> findAll() {
