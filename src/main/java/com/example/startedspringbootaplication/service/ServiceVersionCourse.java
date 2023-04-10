@@ -17,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ServiceVersionCourse {
     private final CourserRepository companyRepository;
+
     public ResponseEntity<String> saveCourse(CourseRequest request) {
         Course company = new Course();
         company.setEmail(request.getEmail());
@@ -25,14 +26,18 @@ public class ServiceVersionCourse {
     }
 
     public CourserResponse getbyid(Long id) {
-        Course groupResponse = companyRepository.findById(id).get();
-        if (groupResponse.getId() == null) {
-            return null;
+        try {
+            Course groupResponse = companyRepository.findById(id).get();
+            if (groupResponse.getId() == null) {
+                return null;
+            }
+            CourserResponse response = new CourserResponse();
+            response.setEmail(groupResponse.getEmail());
+            response.setCompanyId(String.valueOf(groupResponse.getId()));
+            return response;
+        } catch (RuntimeException e) {
+            throw new RuntimeException("-----------------------there is no such: " + id + " please enter an ID that exists-----------------------");
         }
-        CourserResponse response = new CourserResponse();
-        response.setEmail(groupResponse.getEmail());
-        response.setCompanyId(String.valueOf(groupResponse.getId()));
-        return response;
     }
 
     public List<CourserResponse> findAll() {

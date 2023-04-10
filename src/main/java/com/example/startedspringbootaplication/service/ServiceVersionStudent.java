@@ -41,15 +41,19 @@ public class ServiceVersionStudent {
     }
 
     public StudentResponse getbyid(Long id) {
-        Student groupResponse = companyRepository.findById(id).get();
-        if (groupResponse.getId() == null) {
-            return null;
+        try {
+            Student groupResponse = companyRepository.findById(id).get();
+            if (groupResponse.getId() == null) {
+                return null;
+            }
+            StudentResponse response = new StudentResponse();
+            response.setEmail(groupResponse.getEmail());
+            response.setGroupsId(String.valueOf(groupResponse.getId()));
+            response.setFormat(String.valueOf(groupResponse.getStudentFormat()));
+            return response;
+        } catch (RuntimeException e) {
+            throw new RuntimeException("-----------------------there is no such:\" + id + \" please enter an ID that exists-----------------------");
         }
-        StudentResponse response = new StudentResponse();
-        response.setEmail(groupResponse.getEmail());
-        response.setGroupsId(String.valueOf(groupResponse.getId()));
-        response.setFormat(String.valueOf(groupResponse.getStudentFormat()));
-        return response;
     }
 
     public List<StudentResponse> findAll() {
