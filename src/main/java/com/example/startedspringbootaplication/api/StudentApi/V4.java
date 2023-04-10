@@ -1,12 +1,7 @@
 package com.example.startedspringbootaplication.api.StudentApi;
 
-import com.example.startedspringbootaplication.dto.auth.AuthRequest;
-import com.example.startedspringbootaplication.dto.auth.AuthResponse;
-import com.example.startedspringbootaplication.dto.request.CompanyRequest;
 import com.example.startedspringbootaplication.dto.request.StudentRequest;
-import com.example.startedspringbootaplication.dto.response.GroupResponse;
 import com.example.startedspringbootaplication.dto.response.StudentResponse;
-import com.example.startedspringbootaplication.service.ServiceVersionCompany;
 import com.example.startedspringbootaplication.service.ServiceVersionStudent;
 import com.example.startedspringbootaplication.service.auth.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.security.PermitAll;
 
 @RestController
 @RequestMapping("api/v1/student")

@@ -28,7 +28,7 @@ public class ServiceVersionStudent {
         user.setEmail(request.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
         user.setRole(Role.STUDENT);
-        Student company = new Student(user.getEmail(), bCryptPasswordEncoder.encode(user.getPassword()), user.getRole(), StudentFormat.OFFLINE);
+        Student company = new Student(user.getEmail(), user.getPassword(), user.getRole(), StudentFormat.OFFLINE);
         companyRepository.save(company);
         userRepository.save(user);
         return ResponseEntity.ok().build();
