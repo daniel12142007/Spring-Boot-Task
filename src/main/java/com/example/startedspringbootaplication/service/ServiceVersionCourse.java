@@ -2,9 +2,8 @@ package com.example.startedspringbootaplication.service;
 
 import com.example.startedspringbootaplication.dto.request.CourseRequest;
 import com.example.startedspringbootaplication.dto.response.CourserResponse;
-import com.example.startedspringbootaplication.dto.response.StudentResponse;
 import com.example.startedspringbootaplication.model.Course;
-import com.example.startedspringbootaplication.model.Student;
+import com.example.startedspringbootaplication.repository.CompanyRepository;
 import com.example.startedspringbootaplication.repository.CourserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,18 +15,20 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ServiceVersionCourse {
-    private final CourserRepository companyRepository;
+    private final CourserRepository courserRepository;
+    private final CompanyRepository companyRepository;
 
-    public ResponseEntity<String> saveCourse(CourseRequest request) {
-        Course company = new Course();
-        company.setEmail(request.getEmail());
-        companyRepository.save(company);
+    public ResponseEntity<String> saveCourse(CourseRequest request, Long id) {
+        Course course = new Course();
+        course.setCompany(companyRepository.getById(id));
+        course.setEmail(request.getEmail());
+        courserRepository.save(course);
         return ResponseEntity.ok().build();
     }
 
     public CourserResponse getbyid(Long id) {
         try {
-            Course groupResponse = companyRepository.findById(id).get();
+            Course groupResponse = courserRepository.findById(id).get();
             if (groupResponse.getId() == null) {
                 return null;
             }
@@ -41,7 +42,7 @@ public class ServiceVersionCourse {
     }
 
     public List<CourserResponse> findAll() {
-        List<Course> list = companyRepository.findAll();
+        List<Course> list = courserRepository.findAll();
         List<CourserResponse> getList = new ArrayList<>();
         for (Course sudent : list) {
             getList.add(getbyid(sudent.getId()));
