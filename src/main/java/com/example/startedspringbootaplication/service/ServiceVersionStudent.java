@@ -66,8 +66,12 @@ public class ServiceVersionStudent {
     }
 
     public ResponseEntity<String> delete(Long id) {
-        companyRepository.deleteById(id);
-        userRepository.deleteById(id);
-        return ResponseEntity.ok().build();
+        try {
+            companyRepository.deleteById(id);
+            userRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            throw new RuntimeException("-----------------------------------------------------not fount id-----------------------------------------------------");
+        }
     }
 }

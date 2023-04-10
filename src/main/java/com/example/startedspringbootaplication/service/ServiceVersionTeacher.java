@@ -26,7 +26,7 @@ public class ServiceVersionTeacher {
 
     public ResponseEntity<String> saveTeacher(TeacherRequest request, Long courseId) {
         if (companyRepository.existsByEmail(request.getEmail())) {
-            throw new RuntimeException("this email is already have in!");
+            throw new RuntimeException("-----------------------------------------------------this email is already have in!-----------------------------------------------------");
         }
         Users user = new Users();
         user.setEmail(request.getEmail());
@@ -64,8 +64,12 @@ public class ServiceVersionTeacher {
     }
 
     public ResponseEntity<String> delete(Long id) {
+        try {
         companyRepository.deleteById(id);
         userRepository.deleteById(id);
         return ResponseEntity.ok().build();
+        }catch (RuntimeException e){
+            throw new RuntimeException("-----------------------------------------------------not fount id-----------------------------------------------------");
+        }
     }
 }

@@ -29,7 +29,7 @@ public class ServiceVersionGroup {
         return ResponseEntity.ok().build();
     }
 
-    public GroupResponse getbyid(Long id) {
+    public GroupResponse getById(Long id) {
         try {
             Groups groupResponse = companyRepository.findById(id).get();
             if (groupResponse.getId() == null) {
@@ -47,14 +47,18 @@ public class ServiceVersionGroup {
     public List<GroupResponse> findAll() {
         List<Groups> list = companyRepository.findAll();
         List<GroupResponse> getList = new ArrayList<>();
-        for (Groups sudent : list) {
-            getList.add(getbyid(sudent.getId()));
+        for (Groups group : list) {
+            getList.add(getById(group.getId()));
         }
         return getList;
     }
 
     public ResponseEntity<String> delete(Long id) {
-        companyRepository.deleteById(id);
-        return ResponseEntity.ok().build();
+        try {
+            companyRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            throw new RuntimeException("-----------------------------------------------------not fount id-----------------------------------------------------");
+        }
     }
 }

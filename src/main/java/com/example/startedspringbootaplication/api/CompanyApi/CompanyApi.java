@@ -36,6 +36,6 @@ public class CompanyApi {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "get by id company", description = " company can only be get by id to the admin")
     public CompanyResponse getById(@PathVariable Long id) {
-        return company.getbyid(id);
+        return company.getById(id);
     }
 }
