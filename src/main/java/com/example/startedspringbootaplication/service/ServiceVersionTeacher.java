@@ -1,10 +1,10 @@
 package com.example.startedspringbootaplication.service;
 
 import com.example.startedspringbootaplication.dto.request.TeacherRequest;
-import com.example.startedspringbootaplication.model.Company;
+import com.example.startedspringbootaplication.dto.response.TeacherResponse;
 import com.example.startedspringbootaplication.model.Teacher;
 import com.example.startedspringbootaplication.model.role.Role;
-import com.example.startedspringbootaplication.model.users.Users;
+import com.example.startedspringbootaplication.model.Users;
 import com.example.startedspringbootaplication.repository.TeacherRepository;
 import com.example.startedspringbootaplication.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,4 +32,17 @@ public class ServiceVersionTeacher {
         userRepository.save(user);
         return ResponseEntity.ok().build();
     }
+
+    public TeacherResponse getbyid(Long id) {
+        Teacher groupResponse = companyRepository.findById(id).get();
+        if (groupResponse.getId() == null) {
+            return null;
+        }
+        TeacherResponse response = new TeacherResponse();
+        response.setEmail(groupResponse.getEmail());
+        response.setCourseId(String.valueOf(groupResponse.getId()));
+        return response;
+    }
+
+
 }

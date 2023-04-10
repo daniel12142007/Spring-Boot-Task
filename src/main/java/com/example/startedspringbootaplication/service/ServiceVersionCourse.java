@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ServiceVersionCourse {
     private final CourserRepository companyRepository;
-
     public ResponseEntity<String> saveCourse(CourseRequest request) {
         Course company = new Course();
         company.setEmail(request.getEmail());

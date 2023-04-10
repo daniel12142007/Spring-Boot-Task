@@ -7,8 +7,7 @@ import java.util.Collection;
 public enum Role implements GrantedAuthority {
     ADMIN,
     STUDENT,
-    TEACHER,
-    ;
+    TEACHER;
 
 
     @Override

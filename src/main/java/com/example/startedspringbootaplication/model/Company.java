@@ -3,12 +3,8 @@ package com.example.startedspringbootaplication.model;
 import com.example.startedspringbootaplication.model.role.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Entity

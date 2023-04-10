@@ -23,11 +23,11 @@ public class V2 {
     private final ServiceVersionCourse company;
     private final AuthService authService;
 
-    @PostMapping("/login")
-    @PermitAll
-    public AuthResponse authenticated(@RequestBody AuthRequest requestBody) {
-        return authService.authenticate(requestBody);
-    }
+//    @PostMapping("/login")
+//    @PermitAll
+//    public AuthResponse authenticated(@RequestBody AuthRequest requestBody) {
+//        return authService.authenticate(requestBody);
+//    }
     @PostMapping("/save/course")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "save course ", description = " course can only be saved to the admin")
