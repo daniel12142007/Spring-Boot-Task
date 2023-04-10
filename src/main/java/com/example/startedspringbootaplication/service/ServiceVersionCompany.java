@@ -30,7 +30,7 @@ public class ServiceVersionCompany {
         user.setEmail(request.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
         user.setRole(Role.ADMIN);
-        Company company = new Company(user.getEmail(), user.getPassword(), user.getRole());
+        Company company = new Company(request.getCompanyName(),user.getEmail(), user.getPassword(), user.getRole());
         companyRepository.save(company);
         userRepository.save(user);
         return ResponseEntity.ok().build();
