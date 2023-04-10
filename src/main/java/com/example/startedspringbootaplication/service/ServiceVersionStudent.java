@@ -6,6 +6,7 @@ import com.example.startedspringbootaplication.model.Student;
 import com.example.startedspringbootaplication.model.Users;
 import com.example.startedspringbootaplication.model.role.Role;
 import com.example.startedspringbootaplication.model.role.StudentFormat;
+import com.example.startedspringbootaplication.repository.GroupsRepository;
 import com.example.startedspringbootaplication.repository.StudentRepository;
 import com.example.startedspringbootaplication.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +23,9 @@ public class ServiceVersionStudent {
     private final StudentRepository companyRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder bCryptPasswordEncoder;
+    private final GroupsRepository repository;
 
-    public ResponseEntity<String> saveStudent(StudentRequest request) {
+    public ResponseEntity<String> saveStudent(StudentRequest request, Long id) {
         if (companyRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("this email is already have in!");
         }
@@ -32,6 +34,7 @@ public class ServiceVersionStudent {
         user.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
         user.setRole(Role.STUDENT);
         Student company = new Student(user.getEmail(), user.getPassword(), user.getRole(), StudentFormat.OFFLINE);
+        company.setGroup(repository.getById(id));
         companyRepository.save(company);
         userRepository.save(user);
         return ResponseEntity.ok().build();

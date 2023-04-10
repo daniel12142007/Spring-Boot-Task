@@ -3,6 +3,12 @@ package com.example.startedspringbootaplication.service;
 import com.example.startedspringbootaplication.dto.request.GroupsRequest;
 import com.example.startedspringbootaplication.dto.response.GroupResponse;
 import com.example.startedspringbootaplication.model.Groups;
+import com.example.startedspringbootaplication.model.Student;
+import com.example.startedspringbootaplication.model.Users;
+import com.example.startedspringbootaplication.model.role.Role;
+import com.example.startedspringbootaplication.model.role.StudentFormat;
+import com.example.startedspringbootaplication.repository.CompanyRepository;
+import com.example.startedspringbootaplication.repository.CourserRepository;
 import com.example.startedspringbootaplication.repository.GroupsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +21,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ServiceVersionGroup {
     private final GroupsRepository companyRepository;
+    private final CourserRepository courserRepository;
+    private final CompanyRepository companys;
 
-    public ResponseEntity<String> saveGroup(GroupsRequest request) {
+    public ResponseEntity<String> saveGroup(GroupsRequest request, Long courseId, Long companyId) {
         Groups company = new Groups();
+        company.setCompany(companys.getById(companyId));
+        company.setCourses(List.of(courserRepository.getById(courseId)));
         company.setEmail(request.getEmail());
         companyRepository.save(company);
         return ResponseEntity.ok().build();

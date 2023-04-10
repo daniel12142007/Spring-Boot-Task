@@ -19,11 +19,11 @@ public class V4 {
     private final ServiceVersionStudent company;
     private final AuthService authService;
 
-    @PostMapping("/save/student")
+    @PostMapping("/save/student/{Groupid}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "save student ", description = " student can only be saved to the admin")
-    public ResponseEntity<String> save(@RequestBody StudentRequest request) {
-        company.saveStudent(request);
+    public ResponseEntity<String> save(@PathVariable Long Groupid, @RequestBody StudentRequest request) {
+        company.saveStudent(request, Groupid);
         return ResponseEntity.ok().body("user with name:" + request.getEmail() + " successfully save");
     }
 
