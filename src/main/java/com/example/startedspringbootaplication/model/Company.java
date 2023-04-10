@@ -20,6 +20,7 @@ public class Company{
     private Long id;
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)
     private Role role;
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Course> courses;

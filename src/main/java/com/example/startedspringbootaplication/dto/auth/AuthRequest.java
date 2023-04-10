@@ -1,4 +1,4 @@
-package com.example.startedspringbootaplication.dta.auth;
+package com.example.startedspringbootaplication.dto.auth;
 
 import lombok.Getter;
 import lombok.Setter;
