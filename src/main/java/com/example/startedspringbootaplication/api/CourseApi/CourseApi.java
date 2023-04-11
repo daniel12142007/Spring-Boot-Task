@@ -23,7 +23,7 @@ public class CourseApi {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "save course ", description = " course can only be saved to the admin")
     public ResponseEntity<String> save(@RequestBody CourseRequest request, @PathVariable Long companyId) {
-        serviceVersionCourse.saveCourse(request, companyId);
+        serviceVersionCourse.saveCourse(request,companyId);
         return ResponseEntity.ok().body("user with name:" + request.getEmail() + " successfully save");
     }
 
