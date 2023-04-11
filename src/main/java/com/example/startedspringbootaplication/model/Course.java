@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-public class Course{
+public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,6 +26,5 @@ public class Course{
 
     public Course(String email) {
         this.email = email;
-//        this.password = password;
     }
 }
