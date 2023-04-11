@@ -20,7 +20,7 @@ public class TeacherApi {
 
     @PostMapping("/save/teacher/{courseId}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    @Operation(summary = "save teacher ", description = " teacher can only be saved to the admin")
+    @Operation(summary = "save teacher ", description = " teacher can only be saved to the admin.Binding between teacher and course OneToOne!!!")
     public ResponseEntity<String> save(@RequestBody TeacherRequest request, @PathVariable Long courseId) {
         serviceVersionTeacher.saveTeacher(request, courseId);
         return ResponseEntity.ok().body("user with name:" + request.getEmail() + " successfully save");
@@ -42,8 +42,8 @@ public class TeacherApi {
 
     @PostMapping("/delete/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    @Operation(summary = "save teacher ", description = " teacher can only be delete to the admin")
-    public ResponseEntity<String> save(@PathVariable Long id) {
+    @Operation(summary = "delete teacher ", description = " teacher can only be delete to the admin")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
         serviceVersionTeacher.delete(id);
         return ResponseEntity.ok().body("delete");
     }
