@@ -2,6 +2,7 @@ package com.example.startedspringbootaplication.api.CourseApi;
 
 import com.example.startedspringbootaplication.dto.request.CourseRequest;
 import com.example.startedspringbootaplication.dto.response.CourserResponse;
+import com.example.startedspringbootaplication.model.Course;
 import com.example.startedspringbootaplication.service.ServiceVersionCourse;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class CourseApi {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "save course ", description = " course can only be saved to the admin")
     public ResponseEntity<String> save(@RequestBody CourseRequest request, @PathVariable Long companyId) {
-        serviceVersionCourse.saveCourse(request,companyId);
+        serviceVersionCourse.saveCourse(request, companyId);
         return ResponseEntity.ok().body("user with name:" + request.getEmail() + " successfully save");
     }
 

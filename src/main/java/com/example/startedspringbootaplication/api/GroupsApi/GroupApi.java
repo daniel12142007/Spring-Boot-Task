@@ -2,6 +2,7 @@ package com.example.startedspringbootaplication.api.GroupsApi;
 
 import com.example.startedspringbootaplication.dto.request.GroupsRequest;
 import com.example.startedspringbootaplication.dto.response.GroupResponse;
+import com.example.startedspringbootaplication.model.Course;
 import com.example.startedspringbootaplication.service.ServiceVersionGroup;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -48,4 +49,6 @@ public class GroupApi {
         serviceVersionGroup.delete(id);
         return ResponseEntity.ok().body("delete");
     }
+
+
 }
