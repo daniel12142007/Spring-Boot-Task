@@ -1,4 +1,4 @@
-package com.example.startedspringbootaplication.api.GroupsApi;
+package com.example.startedspringbootaplication.api;
 
 import com.example.startedspringbootaplication.dto.request.GroupsRequest;
 import com.example.startedspringbootaplication.dto.response.GroupResponse;
@@ -23,7 +23,7 @@ public class GroupApi {
     @Operation(summary = "save group ", description = " group can only be saved to the admin and teacher")
     public ResponseEntity<String> save(@RequestBody GroupsRequest request, @PathVariable Long courseId, @PathVariable Long companyId) {
         serviceVersionGroup.saveGroup(request, courseId, companyId);
-        return ResponseEntity.ok().body("user with name:" + request.getEmail() + " successfully save");
+        return ResponseEntity.ok().body("user with name:" + request.getGroupName() + " successfully save");
     }
 
 

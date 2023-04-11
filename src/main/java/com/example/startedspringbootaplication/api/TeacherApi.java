@@ -1,4 +1,4 @@
-package com.example.startedspringbootaplication.api.TeacherApi;
+package com.example.startedspringbootaplication.api;
 
 import com.example.startedspringbootaplication.dto.request.TeacherRequest;
 import com.example.startedspringbootaplication.dto.response.TeacherResponse;

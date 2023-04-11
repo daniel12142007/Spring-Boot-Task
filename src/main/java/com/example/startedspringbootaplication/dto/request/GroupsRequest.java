@@ -6,6 +6,5 @@ import lombok.Setter;
 @Setter
 @Getter
 public class GroupsRequest {
-    private String email;
-    private String password;
+    private String groupName;
 }

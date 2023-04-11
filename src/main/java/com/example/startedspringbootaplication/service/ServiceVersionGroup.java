@@ -24,7 +24,7 @@ public class ServiceVersionGroup {
         Groups company = new Groups();
         company.setCompany(companys.getById(companyId));
         company.setCourses(List.of(courserRepository.getById(courseId)));
-        company.setEmail(request.getEmail());
+        company.setEmail(request.getGroupName());
         companyRepository.save(company);
         return ResponseEntity.ok().build();
     }
@@ -36,7 +36,7 @@ public class ServiceVersionGroup {
                 return null;
             }
             GroupResponse response = new GroupResponse();
-            response.setEmail(groupResponse.getEmail());
+            response.setGroupName(groupResponse.getEmail());
             response.setCompanyId(String.valueOf(groupResponse.getId()));
             return response;
         } catch (RuntimeException e) {

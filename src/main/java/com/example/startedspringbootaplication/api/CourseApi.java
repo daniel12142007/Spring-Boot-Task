@@ -1,4 +1,4 @@
-package com.example.startedspringbootaplication.api.CourseApi;
+package com.example.startedspringbootaplication.api;
 
 import com.example.startedspringbootaplication.dto.request.CourseRequest;
 import com.example.startedspringbootaplication.dto.response.CourserResponse;

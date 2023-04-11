@@ -1,4 +1,4 @@
-package com.example.startedspringbootaplication.api.login;
+package com.example.startedspringbootaplication.api;
 
 import com.example.startedspringbootaplication.dto.auth.AuthRequest;
 import com.example.startedspringbootaplication.dto.auth.AuthResponse;

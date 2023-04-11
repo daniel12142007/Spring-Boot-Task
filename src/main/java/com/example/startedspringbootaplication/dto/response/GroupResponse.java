@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class GroupResponse {
-    private String email;
+    private String groupName;
     private String companyId;
 }
