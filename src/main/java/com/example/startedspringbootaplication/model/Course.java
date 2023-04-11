@@ -13,7 +13,9 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String email;
+    //    private String email;
+    private String courseName;
+    private String duration;
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
@@ -24,7 +26,12 @@ public class Course {
             cascade = CascadeType.ALL)
     private List<Groups> groups;
 
-    public Course(String email) {
-        this.email = email;
+    public Course(String courseName, String duration) {
+        this.courseName = courseName;
+        this.duration = duration;
     }
+
+    //    public Course(String email) {
+//        this.email = email;
+//    }
 }

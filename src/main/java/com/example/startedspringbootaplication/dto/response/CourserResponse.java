@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class CourserResponse {
-    private String email;
+    private String courseName;
+    private String duration;
     private String companyId;
+
 }

@@ -21,8 +21,8 @@ public class ServiceVersionCourse {
     public ResponseEntity<String> saveCourse(CourseRequest request, Long id) {
         Course course = new Course();
         course.setCompany(companyRepository.getById(id));
-        course.setEmail(request.getEmail());
-//        course.setDuration(request.getDuration());
+        course.setCourseName(request.getCourseName());
+        course.setDuration(request.getDuration());
         courserRepository.save(course);
         return ResponseEntity.ok().build();
     }
@@ -34,8 +34,8 @@ public class ServiceVersionCourse {
                 return null;
             }
             CourserResponse response = new CourserResponse();
-            response.setEmail(groupResponse.getEmail());
-//            response.setDuration(groupResponse.getDuration());
+            response.setCourseName(groupResponse.getCourseName());
+            response.setDuration(groupResponse.getDuration());
             response.setCompanyId(String.valueOf(groupResponse.getId()));
             return response;
         } catch (RuntimeException e) {
