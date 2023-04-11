@@ -30,7 +30,8 @@ public class ServiceVersionCompany {
         user.setEmail(request.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
         user.setRole(Role.ADMIN);
-        Company company = new Company(request.getCompanyName(),user.getEmail(), user.getPassword(), user.getRole());
+        Company company = new Company(request.getCompanyName(), user.getEmail(), user.getPassword(), user.getRole());
+        company.setNameCompany(request.getCompanyName());
         companyRepository.save(company);
         userRepository.save(user);
         return ResponseEntity.ok().build();
@@ -45,6 +46,7 @@ public class ServiceVersionCompany {
             }
             CompanyResponse response = new CompanyResponse();
             response.setEmail(company.getEmail());
+            response.setCompanyName(company.getNameCompany());
             return response;
         } catch (RuntimeException e) {
             throw new RuntimeException("-----------------------there is no such:" + id + " please enter an ID that exists-----------------------");
