@@ -17,12 +17,16 @@ public class AuthService {
 
     public AuthResponse authenticate(AuthRequest authRequest) {
         Authentication authenticate;
-        authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                authRequest.getEmail(),
-                authRequest.getPassword()
-        ));
-        String generateToken = jwtUtils.generateToken(authenticate);
-        System.out.println(generateToken);
-        return new AuthResponse(authRequest.getEmail(), generateToken);
+        try {
+            authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                    authRequest.getEmail(),
+                    authRequest.getPassword()
+            ));
+            String generateToken = jwtUtils.generateToken(authenticate);
+            System.out.println(generateToken);
+            return new AuthResponse(authRequest.getEmail(), generateToken);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("-------------------------------------------------------------password or email is not correct-------------------------------------------------------------");
+        }
     }
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.security.PermitAll;
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/login")
+@RequestMapping("api/v1")
 public class Api {
     private final AuthService authService;
     @PostMapping("/login")
