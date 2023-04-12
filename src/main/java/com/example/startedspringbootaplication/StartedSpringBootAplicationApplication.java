@@ -39,7 +39,7 @@ public class StartedSpringBootAplicationApplication {
         course.setTeacher(teacher);
         company.setCourses(List.of(course));
 
-        Groups group = new Groups("group");
+        Group group = new Group("group");
 
         group.setCompany(company);
         group.setCourses(List.of(course));

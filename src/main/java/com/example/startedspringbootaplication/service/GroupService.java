@@ -1,11 +1,11 @@
 package com.example.startedspringbootaplication.service;
 
-import com.example.startedspringbootaplication.dto.request.GroupsRequest;
+import com.example.startedspringbootaplication.dto.request.GroupRequest;
 import com.example.startedspringbootaplication.dto.response.GroupResponse;
-import com.example.startedspringbootaplication.model.Groups;
+import com.example.startedspringbootaplication.model.Group;
 import com.example.startedspringbootaplication.repository.CompanyRepository;
-import com.example.startedspringbootaplication.repository.CourserRepository;
-import com.example.startedspringbootaplication.repository.GroupsRepository;
+import com.example.startedspringbootaplication.repository.CourseRepository;
+import com.example.startedspringbootaplication.repository.GroupRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,23 +15,23 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ServiceVersionGroup {
-    private final GroupsRepository companyRepository;
-    private final CourserRepository courserRepository;
-    private final CompanyRepository companys;
+public class GroupService {
+    private final GroupRepository companyRepository;
+    private final CourseRepository courseRepository;
+    private final CompanyRepository companies;
 
-    public ResponseEntity<String> saveGroup(GroupsRequest request, Long courseId, Long companyId) {
-        Groups company = new Groups();
-        company.setCompany(companys.getById(companyId));
-        company.setCourses(List.of(courserRepository.getById(courseId)));
-        company.setEmail(request.getGroupName());
-        companyRepository.save(company);
+    public ResponseEntity<String> saveGroup(GroupRequest request, Long courseId, Long companyId) {
+        Group group = new Group();
+        group.setCompany(companies.getById(companyId));
+        group.setCourses(List.of(courseRepository.getById(courseId)));
+        group.setEmail(request.getGroupName());
+        companyRepository.save(group);
         return ResponseEntity.ok().build();
     }
 
-    public GroupResponse getById(Long id) {
+    public GroupResponse getByIdGroup(Long id) {
         try {
-            Groups groupResponse = companyRepository.findById(id).get();
+            Group groupResponse = companyRepository.findById(id).get();
             if (groupResponse.getId() == null) {
                 return null;
             }
@@ -44,16 +44,16 @@ public class ServiceVersionGroup {
         }
     }
 
-    public List<GroupResponse> findAll() {
-        List<Groups> list = companyRepository.findAll();
+    public List<GroupResponse> findAllGroups() {
+        List<Group> list = companyRepository.findAll();
         List<GroupResponse> getList = new ArrayList<>();
-        for (Groups group : list) {
-            getList.add(getById(group.getId()));
+        for (Group group : list) {
+            getList.add(getByIdGroup(group.getId()));
         }
         return getList;
     }
 
-    public ResponseEntity<String> delete(Long id) {
+    public ResponseEntity<String> deleteByIdGroup(Long id) {
         try {
             companyRepository.deleteById(id);
             return ResponseEntity.ok().build();

@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Data
-public class Groups {
+public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,7 +29,7 @@ public class Groups {
             inverseJoinColumns = @JoinColumn(name = "course_id"))
     private List<Course> courses;
 
-    public Groups(String email) {
+    public Group(String email) {
         this.email = email;
 //        this.password = password;
     }

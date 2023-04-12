@@ -1,6 +1,5 @@
-package com.example.startedspringbootaplication.config.utils;
+package com.example.startedspringbootaplication.jwtConfig;
 
-import com.example.startedspringbootaplication.config.jwtConfig.JwtConfig;
 import com.example.startedspringbootaplication.model.Users;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

@@ -1,4 +1,4 @@
-package com.example.startedspringbootaplication.config.jwtConfig;
+package com.example.startedspringbootaplication.jwtConfig;
 
 import lombok.Getter;
 import lombok.Setter;

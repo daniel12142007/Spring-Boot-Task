@@ -17,7 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ServiceVersionCompany {
+public class CompanyService {
     private final CompanyRepository companyRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder bCryptPasswordEncoder;
@@ -38,7 +38,7 @@ public class ServiceVersionCompany {
     }
 
 
-    public CompanyResponse getById(Long id) {
+    public CompanyResponse getByIdCompany(Long id) {
         try {
             Company company = companyRepository.findById(id).get();
             if (company.getId() == null) {
@@ -53,11 +53,11 @@ public class ServiceVersionCompany {
         }
     }
 
-    public List<CompanyResponse> findAll() {
+    public List<CompanyResponse> findAllCompanies() {
         List<Company> list = companyRepository.findAll();
         List<CompanyResponse> getList = new ArrayList<>();
         for (Company company : list) {
-            getList.add(getById(company.getId()));
+            getList.add(getByIdCompany(company.getId()));
         }
         return getList;
     }

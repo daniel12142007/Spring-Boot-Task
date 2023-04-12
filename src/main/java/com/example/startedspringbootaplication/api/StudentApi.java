@@ -2,7 +2,7 @@ package com.example.startedspringbootaplication.api;
 
 import com.example.startedspringbootaplication.dto.request.StudentRequest;
 import com.example.startedspringbootaplication.dto.response.StudentResponse;
-import com.example.startedspringbootaplication.service.ServiceVersionStudent;
+import com.example.startedspringbootaplication.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("api/v1/student")
 @RequiredArgsConstructor
 public class StudentApi {
-    private final ServiceVersionStudent studentService;
+    private final StudentService studentService;
 
     @PostMapping("/save/student/{Groupid}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
@@ -29,21 +29,21 @@ public class StudentApi {
     @PreAuthorize("hasAnyAuthority('ADMIN','STUDENT')")
     @Operation(summary = "get by id student ", description = " student can only be get by id to the admin and teacher")
     public StudentResponse getbyid(@PathVariable Long id) {
-        return studentService.getbyid(id);
+        return studentService.getByIdStudent(id);
     }
 
     @GetMapping("find/all")
     @PreAuthorize("hasAnyAuthority('ADMIN','STUDENT')")
     @Operation(summary = "find all student ", description = " student can be taken by ID for student and admin")
     public List<StudentResponse> findAll() {
-        return studentService.findAll();
+        return studentService.findAllStudents();
     }
 
     @PostMapping("/delete/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    @Operation(summary = "save student ", description = " student can only be delete to the admin")
+    @Operation(summary = "save student ", description = " student can only be deleteByIdCourse to the admin")
     public ResponseEntity<String> save(@PathVariable Long id) {
-        studentService.delete(id);
-        return ResponseEntity.ok().body("delete");
+        studentService.deleteByIdStudent(id);
+        return ResponseEntity.ok().body("deleteByIdCourse");
     }
 }

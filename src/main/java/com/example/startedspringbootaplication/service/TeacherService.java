@@ -5,7 +5,7 @@ import com.example.startedspringbootaplication.dto.response.TeacherResponse;
 import com.example.startedspringbootaplication.model.Teacher;
 import com.example.startedspringbootaplication.model.enums.Role;
 import com.example.startedspringbootaplication.model.Users;
-import com.example.startedspringbootaplication.repository.CourserRepository;
+import com.example.startedspringbootaplication.repository.CourseRepository;
 import com.example.startedspringbootaplication.repository.TeacherRepository;
 import com.example.startedspringbootaplication.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,11 +18,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ServiceVersionTeacher {
+public class TeacherService {
     private final TeacherRepository companyRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder bCryptPasswordEncoder;
-    private final CourserRepository courserRepository;
+    private final CourseRepository courseRepository;
 
     public ResponseEntity<String> saveTeacher(TeacherRequest request, Long courseId) {
         if (companyRepository.existsByEmail(request.getEmail())) {
@@ -33,13 +33,13 @@ public class ServiceVersionTeacher {
         user.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
         user.setRole(Role.TEACHER);
         Teacher teacher = new Teacher(user.getEmail(), user.getPassword(), user.getRole());
-        teacher.setCourse(courserRepository.getById(courseId));
+        teacher.setCourse(courseRepository.getById(courseId));
         companyRepository.save(teacher);
         userRepository.save(user);
         return ResponseEntity.ok().build();
     }
 
-    public TeacherResponse getById(Long id) {
+    public TeacherResponse getByIdTeacher(Long id) {
         try {
             Teacher teacher = companyRepository.findById(id).get();
             if (teacher.getId() == null) {
@@ -54,16 +54,16 @@ public class ServiceVersionTeacher {
         }
     }
 
-    public List<TeacherResponse> findAll() {
+    public List<TeacherResponse> findAllTeachers() {
         List<Teacher> list = companyRepository.findAll();
         List<TeacherResponse> getList = new ArrayList<>();
-        for (Teacher sudent : list) {
-            getList.add(getById(sudent.getId()));
+        for (Teacher teacher : list) {
+            getList.add(getByIdTeacher(teacher.getId()));
         }
         return getList;
     }
 
-    public ResponseEntity<String> delete(Long id) {
+    public ResponseEntity<String> deleteByIdTeacher(Long id) {
         try {
         companyRepository.deleteById(id);
         userRepository.deleteById(id);

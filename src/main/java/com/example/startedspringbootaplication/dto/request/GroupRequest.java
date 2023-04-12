@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class GroupsRequest {
+public class GroupRequest {
     private String groupName;
 }

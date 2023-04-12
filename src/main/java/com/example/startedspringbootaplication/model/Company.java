@@ -1,6 +1,5 @@
 package com.example.startedspringbootaplication.model;
 
-import com.example.startedspringbootaplication.model.enums.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,7 +19,7 @@ public class Company {
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Course> courses;
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    private List<Groups> groups;
+    private List<Group> groups;
 
     public Company(String nameCompany, String email, String password) {
         this.nameCompany = nameCompany;

@@ -4,7 +4,7 @@ import com.example.startedspringbootaplication.dto.request.CourseRequest;
 import com.example.startedspringbootaplication.dto.response.CourserResponse;
 import com.example.startedspringbootaplication.model.Course;
 import com.example.startedspringbootaplication.repository.CompanyRepository;
-import com.example.startedspringbootaplication.repository.CourserRepository;
+import com.example.startedspringbootaplication.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,8 +14,8 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ServiceVersionCourse {
-    private final CourserRepository courserRepository;
+public class CourseService {
+    private final CourseRepository courseRepository;
     private final CompanyRepository companyRepository;
 
     public ResponseEntity<String> saveCourse(CourseRequest request, Long id) {
@@ -23,36 +23,36 @@ public class ServiceVersionCourse {
         course.setCompany(companyRepository.getById(id));
         course.setCourseName(request.getCourseName());
         course.setDuration(request.getDuration());
-        courserRepository.save(course);
+        courseRepository.save(course);
         return ResponseEntity.ok().build();
     }
 
-    public CourserResponse getById(Long id) {
+    public CourserResponse getByIdCourse(Long id) {
         try {
-            Course groupResponse = courserRepository.findById(id).get();
-            if (groupResponse.getId() == null) {
+            Course course = courseRepository.findById(id).get();
+            if (course.getId() == null) {
                 return null;
             }
             CourserResponse response = new CourserResponse();
-            response.setCourseName(groupResponse.getCourseName());
-            response.setDuration(groupResponse.getDuration());
-            response.setCompanyId(String.valueOf(groupResponse.getId()));
+            response.setCourseName(course.getCourseName());
+            response.setDuration(course.getDuration());
+            response.setCompanyId(String.valueOf(course.getId()));
             return response;
         } catch (RuntimeException e) {
             throw new RuntimeException("-----------------------there is no such: " + id + " please enter an ID that exists-----------------------");
         }
     }
 
-    public List<CourserResponse> findAll() {
-        List<Course> list = courserRepository.findAll();
+    public List<CourserResponse> findAllCourses() {
+        List<Course> list = courseRepository.findAll();
         List<CourserResponse> getList = new ArrayList<>();
         for (Course course : list) {
-            getList.add(getById(course.getId()));
+            getList.add(getByIdCourse(course.getId()));
         }
         return getList;
     }
 
-    public ResponseEntity<String> delete(Long id) {
+    public ResponseEntity<String> deleteByIdCourse(Long id) {
         try {
             companyRepository.deleteById(id);
             return ResponseEntity.ok().build();

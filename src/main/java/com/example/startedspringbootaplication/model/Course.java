@@ -24,7 +24,7 @@ public class Course {
     @ManyToMany(
             mappedBy = "courses",
             cascade = CascadeType.ALL)
-    private List<Groups> groups;
+    private List<Group> groups;
 
     public Course(String courseName, String duration) {
         this.courseName = courseName;

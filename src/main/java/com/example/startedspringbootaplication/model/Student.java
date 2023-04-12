@@ -22,7 +22,7 @@ public class Student {
     private StudentFormat studentFormat;
     @ManyToOne
     @JoinColumn(name = "groups_id")
-    private Groups group;
+    private Group group;
 
     public Student(String email, String password, Role role,StudentFormat studentFormat) {
         this.email = email;

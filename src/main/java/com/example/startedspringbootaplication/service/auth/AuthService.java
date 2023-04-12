@@ -1,6 +1,6 @@
 package com.example.startedspringbootaplication.service.auth;
 
-import com.example.startedspringbootaplication.config.utils.JwtUtils;
+import com.example.startedspringbootaplication.jwtConfig.JwtUtils;
 import com.example.startedspringbootaplication.dto.auth.AuthRequest;
 import com.example.startedspringbootaplication.dto.auth.AuthResponse;
 import lombok.AllArgsConstructor;

@@ -1,8 +1,8 @@
-package com.example.startedspringbootaplication.config.securityConfig;
+package com.example.startedspringbootaplication.jwtConfig.webConfig;
 
-import com.example.startedspringbootaplication.config.jwtConfig.JwtConfig;
-import com.example.startedspringbootaplication.config.filter.JwtTokenFilter;
-import com.example.startedspringbootaplication.config.utils.JwtUtils;
+import com.example.startedspringbootaplication.jwtConfig.JwtConfig;
+import com.example.startedspringbootaplication.jwtConfig.JwtTokenFilter;
+import com.example.startedspringbootaplication.jwtConfig.JwtUtils;
 import com.example.startedspringbootaplication.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +28,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         securedEnabled = true
 )
 @AllArgsConstructor
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserRepository authInfoRepository;
     private final JwtConfig jwtConfig;
     private final JwtUtils jwtUtils;

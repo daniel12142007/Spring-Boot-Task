@@ -2,7 +2,7 @@ package com.example.startedspringbootaplication.api;
 
 import com.example.startedspringbootaplication.dto.request.CourseRequest;
 import com.example.startedspringbootaplication.dto.response.CourserResponse;
-import com.example.startedspringbootaplication.service.ServiceVersionCourse;
+import com.example.startedspringbootaplication.service.CourseService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +16,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CourseApi {
 
-    private final ServiceVersionCourse serviceVersionCourse;
+    private final CourseService courseService;
 
     @PostMapping("/save/course/{companyId}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "save course ", description = " course can only be saved to the admin")
     public ResponseEntity<String> save(@RequestBody CourseRequest request, @PathVariable Long companyId) {
-        serviceVersionCourse.saveCourse(request,companyId);
+        courseService.saveCourse(request,companyId);
         return ResponseEntity.ok().body("user with name:" + request.getCourseName() + " successfully save");
     }
 
@@ -30,21 +30,21 @@ public class CourseApi {
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "get by id course ", description = " course can be taken by ID for admin ")
     public CourserResponse getbyid(@PathVariable Long id) {
-        return serviceVersionCourse.getById(id);
+        return courseService.getByIdCourse(id);
     }
 
     @GetMapping("find/all")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @Operation(summary = "find all teacher ", description = " course can only find all id to the admin ")
     public List<CourserResponse> findAll() {
-        return serviceVersionCourse.findAll();
+        return courseService.findAllCourses();
     }
 
     @PostMapping("/delete/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    @Operation(summary = "save teacher ", description = " course can only be delete to the admin")
+    @Operation(summary = "save teacher ", description = " course can only be deleteByIdCourse to the admin")
     public ResponseEntity<String> save(@PathVariable Long id) {
-        serviceVersionCourse.delete(id);
-        return ResponseEntity.ok().body("delete");
+        courseService.deleteByIdCourse(id);
+        return ResponseEntity.ok().body("deleteByIdCourse");
     }
 }
