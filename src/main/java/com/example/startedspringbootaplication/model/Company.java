@@ -17,17 +17,14 @@ public class Company {
     private String nameCompany;
     private String email;
     private String password;
-    @Enumerated(EnumType.STRING)
-    private Role role;
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Course> courses;
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Groups> groups;
 
-    public Company(String nameCompany, String email, String password, Role role) {
+    public Company(String nameCompany, String email, String password) {
         this.nameCompany = nameCompany;
         this.email = email;
         this.password = password;
-        this.role = role;
     }
 }

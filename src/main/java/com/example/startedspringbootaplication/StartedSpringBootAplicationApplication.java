@@ -30,7 +30,7 @@ public class StartedSpringBootAplicationApplication {
     @PostConstruct
     public void init() {
         Users user = new Users("company", encoder.encode("company"), Role.ADMIN);
-        Company company = new Company("IT.KG", user.getEmail(), user.getPassword(), user.getRole());
+        Company company = new Company("IT.KG", user.getEmail(), user.getPassword());
         Course course = new Course("course", "9 month");
         course.setCompany(company);
         Users user1 = new Users("teacher", encoder.encode("teacher"), Role.TEACHER);
