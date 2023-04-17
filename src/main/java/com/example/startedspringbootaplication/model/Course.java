@@ -13,7 +13,6 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //    private String email;
     private String courseName;
     private String duration;
     @ManyToOne

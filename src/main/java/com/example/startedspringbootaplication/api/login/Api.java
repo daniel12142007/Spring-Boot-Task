@@ -15,6 +15,7 @@ import javax.annotation.security.PermitAll;
 @RequestMapping("api/v1")
 public class Api {
     private final AuthService authService;
+//    This method is needed for user login
     @PostMapping("/login")
     @PermitAll
     public AuthResponse authenticated(@RequestBody AuthRequest requestBody) {

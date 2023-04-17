@@ -9,15 +9,14 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Data
+@Table(name = "groups")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "groupName")
     private String email;
-    //    private String password;
-    //    @Enumerated(EnumType.STRING)
-//    private Role role;
+
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;

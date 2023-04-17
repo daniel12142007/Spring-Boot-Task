@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+// This class need for return jwt token and email
 public class AuthResponse {
     private String email;
     private String jwt;
