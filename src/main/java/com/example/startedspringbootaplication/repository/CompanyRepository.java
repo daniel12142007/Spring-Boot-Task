@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Long> {
-    Optional<Company> findByEmail(String name);
 
     @Query("select case when count(u)>0 then true else false end from Company u where u.email like :email")
     boolean existsByEmail(@Param(value = "email") String email);
