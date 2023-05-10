@@ -85,6 +85,16 @@
             <artifactId>modelmapper</artifactId>
             <version>3.1.0</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.dukescript.api</groupId>
+            <artifactId>junit-browser-runner</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>

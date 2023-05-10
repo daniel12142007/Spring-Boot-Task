@@ -27,10 +27,10 @@ public class GroupApi {
     }
 
 
-    @GetMapping("get/group/{id}")
+    @GetMapping("get/group/{id}")   
     @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
     @Operation(summary = "get by id group ", description = " group can be taken by ID for teacher and admin")
-    public GroupResponse getbyid(@PathVariable Long id) {
+    public GroupResponse getById(@PathVariable Long id) {
         return groupService.getByIdGroup(id);
     }
 

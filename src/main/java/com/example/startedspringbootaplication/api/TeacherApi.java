@@ -29,7 +29,7 @@ public class TeacherApi {
     @GetMapping("get/teacher/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
     @Operation(summary = "get by id teacher ", description = " teacher can only be get by id to the admin and teacher")
-    public TeacherResponse getbyid(@PathVariable Long id) {
+    public TeacherResponse getById(@PathVariable Long id) {
         return teacherService.getByIdTeacher(id);
     }
 

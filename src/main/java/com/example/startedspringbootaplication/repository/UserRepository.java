@@ -1,6 +1,6 @@
 package com.example.startedspringbootaplication.repository;
 
-import com.example.startedspringbootaplication.model.Users;
+import com.example.startedspringbootaplication.model.user.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

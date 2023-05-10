@@ -4,7 +4,7 @@ import com.example.startedspringbootaplication.dto.request.TeacherRequest;
 import com.example.startedspringbootaplication.dto.response.TeacherResponse;
 import com.example.startedspringbootaplication.model.Teacher;
 import com.example.startedspringbootaplication.model.enums.Role;
-import com.example.startedspringbootaplication.model.Users;
+import com.example.startedspringbootaplication.model.user.Users;
 import com.example.startedspringbootaplication.repository.CourseRepository;
 import com.example.startedspringbootaplication.repository.TeacherRepository;
 import com.example.startedspringbootaplication.repository.UserRepository;

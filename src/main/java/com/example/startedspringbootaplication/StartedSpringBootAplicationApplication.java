@@ -2,18 +2,20 @@ package com.example.startedspringbootaplication;
 
 import com.example.startedspringbootaplication.model.*;
 import com.example.startedspringbootaplication.model.enums.Role;
-import com.example.startedspringbootaplication.model.Users;
 import com.example.startedspringbootaplication.model.enums.StudentFormat;
+import com.example.startedspringbootaplication.model.user.Users;
 import com.example.startedspringbootaplication.repository.CompanyRepository;
 import com.example.startedspringbootaplication.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Objects;
 
 @SpringBootApplication
 @RestController

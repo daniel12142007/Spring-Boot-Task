@@ -3,7 +3,7 @@ package com.example.startedspringbootaplication.service;
 import com.example.startedspringbootaplication.dto.request.StudentRequest;
 import com.example.startedspringbootaplication.dto.response.StudentResponse;
 import com.example.startedspringbootaplication.model.Student;
-import com.example.startedspringbootaplication.model.Users;
+import com.example.startedspringbootaplication.model.user.Users;
 import com.example.startedspringbootaplication.model.enums.Role;
 import com.example.startedspringbootaplication.model.enums.StudentFormat;
 import com.example.startedspringbootaplication.repository.GroupRepository;

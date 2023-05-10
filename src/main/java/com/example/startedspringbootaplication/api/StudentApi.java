@@ -28,7 +28,7 @@ public class StudentApi {
     @GetMapping("get/student/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN','STUDENT')")
     @Operation(summary = "get by id student ", description = " student can only be get by id to the admin and teacher")
-    public StudentResponse getbyid(@PathVariable Long id) {
+    public StudentResponse getById(@PathVariable Long id) {
         return studentService.getByIdStudent(id);
     }
 

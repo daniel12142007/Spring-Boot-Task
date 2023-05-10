@@ -1,6 +1,6 @@
 package com.example.startedspringbootaplication.jwtConfig;
 
-import com.example.startedspringbootaplication.model.Users;
+import com.example.startedspringbootaplication.model.user.Users;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.AllArgsConstructor;
